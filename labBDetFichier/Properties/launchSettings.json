@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "labBDetFichier (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "labBDetFichier (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
