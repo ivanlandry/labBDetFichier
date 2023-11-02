@@ -31,5 +31,10 @@ namespace labBDetFichier
         public string Categorie { get => categorie; set => categorie = value; }
         public string Couleur { get => couleur; set => couleur = value; }
         public double Prix { get => prix; set => prix = value; }
+
+        public override string ToString()
+        {
+            return $"{Code};{modele};{meuble};{categorie};{couleur};{prix}";
+        }
     }
 }

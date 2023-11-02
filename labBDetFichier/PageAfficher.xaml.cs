@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -66,6 +67,44 @@ namespace labBDetFichier
                 this.materiaux = Singleton.getInstance().getListMateriel();
                 gdvMateriaux.ItemsSource = this.materiaux;
             }
+        }
+
+        private async void exporter_Click(object sender, RoutedEventArgs e)
+        {
+
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(Singleton.getInstance().getWindow());
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+            if (nom_fichier.Text != "")
+            {
+                picker.SuggestedFileName = nom_fichier.Text;
+            }
+            else
+            {
+                picker.SuggestedFileName = "materiaux";
+            }
+         
+            picker.FileTypeChoices.Add("Fichier csv", new List<string>() { ".csv" });
+
+            //crée le fichier
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+           if(monFichier != null)
+            {
+                List<Materiel> liste = new List<Materiel>();
+
+                foreach (Materiel item in this.materiaux)
+                {
+                    liste.Add(item);
+                }
+
+                // La fonction ToString de la classe Client retourne: nom + ";" + prenom
+
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste.ConvertAll(x => x.ToString()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            }
+
         }
     }
 }

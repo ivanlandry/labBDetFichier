@@ -11,8 +11,10 @@
 
     <ScrollViewer>
         <StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0 0 20 0">
                 <Button x:Name="load_fichier" Click="load_fichier_Click">charger un fichier</Button>
+                <TextBox PlaceholderText="Nom du fichier" x:Name="nom_fichier" Margin="20 0 20 0"></TextBox>
+                <Button x:Name="exporter" Click="exporter_Click">Exporter le fichier</Button>
             </StackPanel>
 
             
