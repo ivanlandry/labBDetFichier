@@ -10,22 +10,22 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ScrollViewer>
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical" x:Name="main">
             <TextBlock HorizontalAlignment="Center" Margin="0 20 0 10" FontSize="30">Ajouter un materiel</TextBlock>
             <TextBox Header="Code" x:Name="code"  Margin="0 20 0 0"></TextBox>
-            <TextBlock x:Name="erreurCode" Foreground="Red">erreur</TextBlock>
+            <TextBlock x:Name="erreurCode" Foreground="Red"></TextBlock>
             <TextBox Header="Modele" x:Name="modele"></TextBox>
-            <TextBlock x:Name="erreurModele" Foreground="Red">erreur</TextBlock>
+            <TextBlock x:Name="erreurModele" Foreground="Red"></TextBlock>
             <TextBox Header="Meuble" x:Name="meuble" Margin="0 20 0 0"></TextBox>
-            <TextBlock x:Name="erreurMeuble" Foreground="Red">erreur</TextBlock>
+            <TextBlock x:Name="erreurMeuble" Foreground="Red"></TextBlock>
             <TextBox Header="Couleur" x:Name="couleur" Margin="0 20 0 0"></TextBox>
-            <TextBlock x:Name="erreurCouleur" Foreground="Red">erreur</TextBlock>
+            <TextBlock x:Name="erreurCouleur" Foreground="Red"></TextBlock>
             <TextBox Header="Prix" x:Name="prix" Margin="0 20 0 0"></TextBox>
-            <TextBlock x:Name="erreurPrix" Foreground="Red">erreur</TextBlock>
+            <TextBlock x:Name="erreurPrix" Foreground="Red"></TextBlock>
             <TextBox Header="Categorie" x:Name="categorie" Margin="0 20 0 0"></TextBox>
-            <TextBlock x:Name="erreurCategorie" Foreground="Red">erreur</TextBlock>
+            <TextBlock x:Name="erreurCategorie" Foreground="Red"></TextBlock>
 
-            <Button Margin="0 20 0 10" HorizontalAlignment="Center" Width="300" Background="DarkSeaGreen">Enregistrer</Button>
+            <Button x:Name="enregistrer" Click="enregistrer_Click" Margin="0 20 0 10" HorizontalAlignment="Center" Width="300" Background="DarkSeaGreen">Enregistrer</Button>
         </StackPanel>
     </ScrollViewer>
 </Page>

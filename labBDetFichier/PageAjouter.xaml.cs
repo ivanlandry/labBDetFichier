@@ -27,5 +27,101 @@ namespace labBDetFichier
         {
             this.InitializeComponent();
         }
+
+       
+
+        private async void enregistrer_Click(object sender, RoutedEventArgs e)
+        {
+            string _code, _modele, _meuble, _categorie, _couleur, _prix;
+            _code = code.Text;
+            _modele = modele.Text;
+            _meuble = meuble.Text;
+            _couleur = couleur.Text;
+            _prix = prix.Text;
+            _categorie = categorie.Text;
+
+            if (_code == "")
+                erreurCode.Text = "le code est requis";
+            else
+            {
+                if(_code.Length!=3)
+                    erreurCode.Text = "le code doit etre de 3 chiffres";
+                else
+                {
+                    try
+                    {
+                       int code = Convert.ToInt32(_code);
+                        erreurCode.Text = "";
+                    }
+                    catch(Exception exception)
+                    {
+                        erreurCode.Text = "nombre invalide";
+                    }
+                }
+                    
+            }
+
+            if (_modele == "")
+                erreurModele.Text = "le modele est requis";
+            else
+                erreurModele.Text = "";
+
+            if (_meuble == "")
+                erreurMeuble.Text = "le meuble est requis";
+            else
+                erreurMeuble.Text = "";
+
+            if (_couleur == "")
+                erreurCouleur.Text = "la couleur est requis";
+            else
+                erreurCouleur.Text = "";
+
+            if (_prix == "")
+                erreurPrix.Text = "le prix est requis";
+            else
+            {
+                try
+                {
+                    double prix = Convert.ToDouble(_prix);
+                    erreurPrix.Text = "";
+                }
+                catch(Exception exception)
+                {
+                    erreurPrix.Text = "prix invalide";
+                }
+            }
+
+            if (_categorie == "")
+                erreurCategorie.Text = "la categorie est requise";
+            else
+                erreurCategorie.Text = "";
+
+            if(erreurCode.Text=="" && erreurModele.Text=="" && erreurMeuble.Text=="" && erreurCategorie.Text=="" && erreurCouleur.Text=="" && erreurPrix.Text == "")
+            {
+                Materiel m = new Materiel(_code,_modele,_meuble,_categorie,_couleur,Convert.ToDouble(_prix));
+
+                Singleton.getInstance().ajouter(m);
+
+                this.clearField();
+
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = main.XamlRoot;
+                dialog.Title = "Succes";
+                dialog.CloseButtonText = "OK";
+                dialog.Content = "materiel enregistré";
+
+                var result = await dialog.ShowAsync();
+            }
+        }
+
+        public void clearField()
+        {
+            code.Text = "";
+            modele.Text = "";
+            meuble.Text = "";
+            categorie.Text = "";
+            couleur.Text = "";
+            prix.Text = "";
+        }
     }
 }
