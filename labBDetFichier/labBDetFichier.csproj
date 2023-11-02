@@ -14,7 +14,6 @@
   <ItemGroup>
     <None Remove="PageAfficher.xaml" />
     <None Remove="PageAjouter.xaml" />
-    <None Remove="PageZoomMateriel.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,11 +40,6 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="PageZoomMateriel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="PageAfficher.xaml">

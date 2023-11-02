@@ -18,7 +18,7 @@
             </StackPanel>
 
             
-                <GridView x:Name="gdvMateriaux">
+                <GridView x:Name="gdvMateriaux" ItemClick="gdvMateriaux_ItemClick" IsItemClickEnabled="True">
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="local:Materiel">
                             <StackPanel Orientation="Vertical"

@@ -23,12 +23,32 @@ namespace labBDetFichier
     /// </summary>
     public sealed partial class PageAjouter : Page
     {
+        private Materiel materiel;
         public PageAjouter()
         {
             this.InitializeComponent();
         }
 
-       
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (e.Parameter is not null)
+            {
+                this.materiel = e.Parameter as Materiel;
+
+                titre_page.Text = "Modifer le materiel";
+
+                code.Text = materiel.Code;
+                modele.Text = materiel.Modele;
+                meuble.Text = materiel.Meuble;
+                categorie.Text = materiel.Categorie;
+                couleur.Text = materiel.Couleur;
+                prix.Text = materiel.Prix.ToString();
+
+                enregistrer.Content = "Modifier";
+            }
+        }
 
         private async void enregistrer_Click(object sender, RoutedEventArgs e)
         {
@@ -100,8 +120,14 @@ namespace labBDetFichier
             {
                 Materiel m = new Materiel(_code,_modele,_meuble,_categorie,_couleur,Convert.ToDouble(_prix));
 
-                Singleton.getInstance().ajouter(m);
-
+                if (this.materiel == null)
+                {
+                    Singleton.getInstance().ajouter(m);
+                }
+                else
+                {
+                    Singleton.getInstance().modifier(m,this.materiel.Code);
+                }
                 this.clearField();
 
                 ContentDialog dialog = new ContentDialog();

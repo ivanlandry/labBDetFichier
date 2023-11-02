@@ -106,5 +106,10 @@ namespace labBDetFichier
             }
 
         }
+
+        private void gdvMateriaux_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.Frame.Navigate(typeof(PageAjouter), e.ClickedItem as Materiel);
+        }
     }
 }

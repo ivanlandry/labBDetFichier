@@ -11,7 +11,7 @@
 
     <ScrollViewer>
         <StackPanel Orientation="Vertical" x:Name="main">
-            <TextBlock HorizontalAlignment="Center" Margin="0 20 0 10" FontSize="30">Ajouter un materiel</TextBlock>
+            <TextBlock HorizontalAlignment="Center" Margin="0 20 0 10" FontSize="30" x:Name="titre_page">Ajouter un materiel</TextBlock>
             <TextBox Header="Code" x:Name="code"  Margin="0 20 0 0"></TextBox>
             <TextBlock x:Name="erreurCode" Foreground="Red"></TextBlock>
             <TextBox Header="Modele" x:Name="modele"></TextBox>

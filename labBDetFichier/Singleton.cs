@@ -79,5 +79,33 @@ namespace labBDetFichier
             commande.ExecuteNonQuery();
             con.Close();
         }
+
+        public void modifier(Materiel materiel,string ancien_code)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "update materiels set code=@code,modele=@modele,meuble=@meuble,categorie=@categorie,couleur=@couleur,prix=@prix where code=@ancien_code";
+
+                commande.Parameters.AddWithValue("@code", materiel.Code);
+                commande.Parameters.AddWithValue("@modele", materiel.Modele);
+                commande.Parameters.AddWithValue("@meuble", materiel.Meuble);
+                commande.Parameters.AddWithValue("@categorie", materiel.Categorie);
+                commande.Parameters.AddWithValue("@couleur", materiel.Couleur);
+                commande.Parameters.AddWithValue("@prix", materiel.Prix);
+                commande.Parameters.AddWithValue("@ancien_code", ancien_code);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+                
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+               Console.WriteLine(ex);
+            }
+            con.Close();
+        }
     }
 }
